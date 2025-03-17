@@ -309,7 +309,7 @@ view_item.addEventListener("click", () => {
 <script>
   const add_to_cart = document.getElementById("add_to_cart");
   add_to_cart.addEventListener("click", () => {
-    view_item.innerHTML = "Vous avez bien ajouté le produit au panier";
+    add_to_cart.innerHTML = "Vous avez bien ajouté le produit au panier";
     dataLayer.push({
       event: "add_to_cart",
       currency : "EUR",
