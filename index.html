@@ -9,13 +9,7 @@
   })(window,document,'script','dataLayer','GTM-WTZKJDK5');</script>
   <!-- End Google Tag Manager -->
 
-    <script
-      id="Cookiebot"
-      src="https://consent.cookiebot.com/uc.js"
-      data-cbid="229b3d35-7f14-456c-84d5-49b2776dc454"
-      data-blockingmode="auto"
-      type="text/javascript"
-    ></script>
+  
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -225,7 +219,7 @@
     <button id="add_to_cart">
       Cliquer ici pour ajouter un produit au panier 
     </button>
-    
+
     <button id="purchase">
       Cliquer ici pour valider l'achat de votre formation GA4
     </button>
@@ -275,6 +269,66 @@
     history.pushState(state, "", url);
   });
 </script>
+<script>
+const view_item = document.getElementById("view_item");
+view_item.addEventListener("click", () => {
+  view_item.innerHTML = "Vous avez bien consulté la page produit";
+  dataLayer.push({
+    event: "view_item",
+    currency : "EUR",
+    value : 50.00,
+    items: [
+      {
+        item_id : "PRODUIT-123",
+        item_name : "FORMATION ALEXIS",
+        coupon : "SOLDES2025",
+        discount : 10,
+        item_brand : "Unnest",
+        item_category : "Formation",
+        item_variant : "GTM",
+        price : 60,
+        quantity : 1
+
+      }
+    ]
+
+    
+  }
+
+  )
+})
+</script>
+
+<script>
+  const add_to_cart = document.getElementById("add_to_cart");
+  add_to_cart.addEventListener("click", () => {
+    view_item.innerHTML = "Vous avez bien ajouté le produit au panier";
+    dataLayer.push({
+      event: "add_to_cart",
+      currency : "EUR",
+      value : 60.00,
+      items: [
+        {
+          item_id : "PRODUIT-123",
+          item_name : "FORMATION ALEXIS",
+          coupon : null,
+          discount : 0,
+          item_brand : "Unnest",
+          item_category : "Formation",
+          item_variant : "GTM",
+          price : 60.00,
+          quantity : 1
+  
+        }
+      ]
+  
+      
+    }
+  
+    )
+  })
+  </script>
+
 
 <script>
   const purchase = document.getElementById("purchase");
@@ -282,7 +336,7 @@
     purchase.innerHTML =
       "Votre achat a été validé et votre carte bleue débitée";
     dataLayer.push({
-      event: "productPurchase",
+      event: "purchase",
       productPurchase: {
         userEmail : 'pierre.dupont@gmail.com',
         userFirstName : 'Pierre',
@@ -301,7 +355,7 @@
         ),
         shipping: Math.round((Math.random() * (100 - 10) + 10) * 100) / 100,
         currency: ["EUR", "USD", "CHF"][Math.floor(Math.random() * 3)],
-        products: [
+        items: [
           {
             SKU: ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
               (
@@ -313,7 +367,7 @@
             category: "Formations",
             price: Math.floor(Math.random() * (5000 - 1000 + 1)) + 300,
             duration: Math.floor(Math.random() * (5 - 1 + 1)) + 300,
-            trainer: ["Aristide", "Michel", "Patrick"][
+            trainer: ["Alexis", "Michel", "Patrick"][
               Math.floor(Math.random() * 3)
             ],
           },
@@ -328,11 +382,35 @@
             category: "Formations",
             price: Math.floor(Math.random() * (5000 - 1000 + 1)) + 300,
             duration: Math.floor(Math.random() * (5 - 1 + 1)) + 300,
-            trainer: ["Aristide", "Michel", "Patrick"][
+            trainer: ["Alexis", "Michel", "Patrick"][
               Math.floor(Math.random() * 3)
             ],
           },
         ],
+      },
+      ecommerce : {
+        currency : "EUR",
+        value : 50.00,
+        transaction_id : "F-1234",
+        coupon : "SOLDES2025",
+        coupon_amount : 10.00,
+        shipping : 0,
+        tax : 0,
+        items: [
+        {
+          item_id : "PRODUIT-123",
+          item_name : "FORMATION ALEXIS",
+          coupon : null,
+          discount : 0,
+          item_brand : "Unnest",
+          item_category : "Formation",
+          item_variant : "GTM",
+          price : 60.00,
+          quantity : 1
+  
+        }
+      ]
+
       },
     });
   });
