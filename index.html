@@ -301,6 +301,7 @@ view_item.addEventListener("click", () => {
   view_item.innerHTML = "Vous avez bien consulté la page produit";
   dataLayer.push({
     event: "view_item",
+  ecommerce : {
     currency : "EUR",
     value : 50.00,
     items: [
@@ -318,7 +319,7 @@ view_item.addEventListener("click", () => {
       }
       
     ]
-
+  }
     
   }
 
@@ -332,6 +333,7 @@ view_item.addEventListener("click", () => {
     add_to_cart.innerHTML = "Vous avez bien ajouté le produit au panier";
     dataLayer.push({
       event: "add_to_cart",
+    ecommerce : {
       currency : "EUR",
       value : 70.00,
       items: [
@@ -360,7 +362,7 @@ view_item.addEventListener("click", () => {
   
         }
       ]
-  
+    }
       
     }
   
@@ -373,6 +375,7 @@ view_item.addEventListener("click", () => {
     begin_checkout.innerHTML = "Vous avez bien initié le paiement";
     dataLayer.push({
       event: "begin_ccheckout",
+     ecommerce : {
       currency : "EUR",
       value : 70.00,
       items: [
@@ -401,7 +404,7 @@ view_item.addEventListener("click", () => {
   
         }
       ]
-  
+    } 
       
     }
   
