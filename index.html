@@ -8,7 +8,13 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WTZKJDK5');</script>
   <!-- End Google Tag Manager -->
-
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P5RFC5LK');</script>
+  <!-- End Google Tag Manager -->
   
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -212,6 +218,9 @@
       chacun de récupérer des informations sur les comptes dont il est
       propriétaire.
     </p>
+    <h1>
+      Module e-commerce
+    </h1>
     <img src="https://localo.com/fr/assets/img/definitions/what-is-gtm.webp" alt="logo gtm" width=100% height="500px">
     <h2>
       Bouton view_item
@@ -225,6 +234,15 @@
     <button id="add_to_cart">
       Cliquer ici pour ajouter un produit au panier 
     </button>
+
+    <h2>
+      Bouton begin_checkout
+     </h2>
+      <button id="begin_checkout">
+        Cliquer ici pour débuter le paiement
+      </button>
+
+
 <h2>
   Bouton purchase
 </h2>
@@ -336,7 +354,35 @@ view_item.addEventListener("click", () => {
     )
   })
   </script>
-
+<script>
+  const begin_checkout = document.getElementById("begin_checkout");
+  begin_checkout.addEventListener("click", () => {
+    begin_checkout.innerHTML = "Vous avez bien initié le paiement";
+    dataLayer.push({
+      event: "begin_checkout ",
+      currency : "EUR",
+      value : 60.00,
+      items: [
+        {
+          item_id : "PRODUIT-123",
+          item_name : "FORMATION ALEXIS",
+          coupon : null,
+          discount : 0,
+          item_brand : "Unnest",
+          item_category : "Formation",
+          item_variant : "GTM",
+          price : 60.00,
+          quantity : 1
+  
+        }
+      ]
+  
+      
+    }
+  
+    )
+  })
+  </script>
 
 <script>
   const purchase = document.getElementById("purchase");
@@ -345,6 +391,19 @@ view_item.addEventListener("click", () => {
       "Votre achat a été validé et votre carte bleue débitée";
     dataLayer.push({
       event: "purchase",
+      user_data : {
+        first_name : "Pierre",
+        CB :"4269352698563",
+        user_id :"001002003",
+        password : "motdepasse",
+        last_name : "Dupont",
+        city : "Paris",
+        phone : "0612345678",
+        zip : "75001",
+        favorite_food : "Lasagnes",
+        mail : "pierre.dupont@gmail.com"
+
+      },
       productPurchase: {
         userEmail : 'pierre.dupont@gmail.com',
         userFirstName : 'Pierre',
