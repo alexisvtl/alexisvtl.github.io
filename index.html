@@ -312,7 +312,7 @@ view_item.addEventListener("click", () => {
         item_brand : "Unnest",
         item_category : "Formation",
         item_variant : "GTM",
-        price : 60,
+        price : 60.00,
         quantity : 1
 
       }
@@ -333,17 +333,17 @@ view_item.addEventListener("click", () => {
     dataLayer.push({
       event: "add_to_cart",
       currency : "EUR",
-      value : 60.00,
+      value : 70.00,
       items: [
         {
           item_id : "PRODUIT-123",
           item_name : "FORMATION ALEXIS",
           coupon : null,
-          discount : 0,
+          discount : 10,
           item_brand : "Unnest",
           item_category : "Formation",
           item_variant : "GTM",
-          price : 60.00,
+          price : 50.00,
           quantity : 1
   
         },
@@ -372,19 +372,19 @@ view_item.addEventListener("click", () => {
   begin_checkout.addEventListener("click", () => {
     begin_checkout.innerHTML = "Vous avez bien initié le paiement";
     dataLayer.push({
-      event: "begin_ccheckout ",
+      event: "begin_ccheckout",
       currency : "EUR",
-      value : 60.00,
+      value : 70.00,
       items: [
         {
           item_id : "PRODUIT-123",
           item_name : "FORMATION ALEXIS",
           coupon : null,
-          discount : 0,
+          discount : 10,
           item_brand : "Unnest",
           item_category : "Formation",
           item_variant : "GTM",
-          price : 60.00,
+          price : 50.00,
           quantity : 1
   
         },
@@ -482,7 +482,7 @@ view_item.addEventListener("click", () => {
       },
       ecommerce : {
         currency : "EUR",
-        value : 50.00,
+        value : 60.00,
         transaction_id : "F-1234",
         coupon : "SOLDES2025",
         coupon_amount : 10.00,
@@ -493,11 +493,11 @@ view_item.addEventListener("click", () => {
           item_id : "PRODUIT-123",
           item_name : "FORMATION ALEXIS",
           coupon : null,
-          discount : 0,
+          discount : 10,
           item_brand : "Unnest",
           item_category : "Formation",
           item_variant : "GTM",
-          price : 60.00,
+          price : 50.00,
           quantity : 1
   
         },
