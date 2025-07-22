@@ -141,7 +141,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div>
         <div class="product-price">38,80 €</div>
-        <button class="add-to-cart-btn">Ajouter au panier</button>
+        <button id ="add-to-cart"
+         class="add-to-cart-btn">Ajouter au panier</button>
       </div>
     </div>
   </div>
@@ -149,7 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </body>
 </html>
 <script>
-  const add_to_cart = document.getElementsByClassName("add-to-cart-btn");
+  const add_to_cart = document.getElementById("add-to-cart");
   add_to_cart.addEventListener("click", () => {
     add_to_cart.innerHTML = "Vous avez bien ajouté le produit au panier";
     dataLayer.push({
