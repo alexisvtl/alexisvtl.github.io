@@ -138,3 +138,38 @@
 
 </body>
 </html>
+<script>
+  const add_to_cart = document.getElementsByClassName("add-to-cart-btn");
+  add_to_cart.addEventListener("click", () => {
+    add_to_cart.innerHTML = "Vous avez bien ajouté le produit au panier";
+    dataLayer.push({
+      event: "add_to_cart",
+      ecommerce : {
+      currency : "EUR",
+      value : 38.80,
+      items: [
+        {
+          item_id : "PRODUIT-123",
+          item_name : "Duo Éclat Solaire Boost",
+          coupon : null,
+          discount : 0,
+          item_brand : "Respire",
+          item_category : "MATIFIANT",
+          item_category2 : "ANTIOXYDANT",
+          item_category3 : "HYDRATANT",
+          item_variant : "GTM",
+          item_composition : "75% origine naturelle",
+          item_preocupation : "Teint terne et fatigué, tache pigmentaire & vieillissement cutané",
+          price : 38.80,
+          quantity : 1
+  
+        },
+        
+      ]
+    }
+      
+    }
+  
+    )
+  })
+  </script>
