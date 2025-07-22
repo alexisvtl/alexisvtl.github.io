@@ -31,6 +31,7 @@
     .product-image img {
       width: 100%;
       border-radius: 10px;
+      object-fit: cover;
     }
 
     .product-details {
@@ -49,7 +50,41 @@
     .product-description {
       font-size: 16px;
       line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .product-attributes {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .product-attributes strong {
+      display: inline-block;
+      width: 120px;
+    }
+
+    .product-tags {
+      display: flex;
+      gap: 10px;
       margin-bottom: 30px;
+    }
+
+    .product-tags span {
+      background-color: #eaeaea;
+      color: #333;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .product-price {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #222;
     }
 
     .add-to-cart-btn {
@@ -69,18 +104,35 @@
 
   <div class="product-container">
     <div class="product-image">
-      <img src="https://cdn.shopify.com/s/files/1/0255/3249/9006/products/duo-eclat-solaire-boost.jpg?v=1685974993" alt="Duo Éclat Solaire Boost">
+      <!-- Remplace ce chemin par le vrai lien ou fichier image -->
+      <img src="chemin-vers-ton-image.jpg" alt="Duo Éclat Solaire Boost">
     </div>
     <div class="product-details">
       <div>
         <h1 class="product-title">Duo Éclat Solaire Boost</h1>
         <p class="product-description">
           Ce duo solaire éclat est parfait pour protéger et illuminer votre peau tout au long de l’été. 
-          Composé d’un SPF visage et d’un SPF corps, il convient à tous les types de peau.
-          Formulé à 98% d’ingrédients d’origine naturelle.
+          Composé d’un Stick Solaire et d’un Sérum visage SPF30, il convient à tous les types de peau.
         </p>
+
+        <div class="product-attributes">
+          <p><strong>Préoccupations</strong> Teint terne et fatigué, tache pigmentaire & vieillissement cutané</p>
+          <p><strong>Textures</strong> Baume invisible (Stick Solaire) & Fluide non collant (Sérum)</p>
+          <p><strong>Composition</strong> 75% d'origine naturelle</p>
+          <p><strong>Contenances</strong> Stick Solaire (15g) & Sérum (30mL)</p>
+        </div>
+
+        <div class="product-tags">
+          <span>MATIFIANT</span>
+          <span>ANTIOXYDANT</span>
+          <span>HYDRATANT</span>
+        </div>
       </div>
-      <button class="add-to-cart-btn">Ajouter au panier</button>
+
+      <div>
+        <div class="product-price">38,80 €</div>
+        <button class="add-to-cart-btn">Ajouter au panier</button>
+      </div>
     </div>
   </div>
 
