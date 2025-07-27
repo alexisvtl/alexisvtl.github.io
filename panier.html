@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Panier - Duo Éclat Solaire Boost</title>
+  <style>
+    body {
+      font-family: 'Scto Grotesk B', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .product-price {
+      color: #444;
+    }
+
+    .cta {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      background-color: black;
+      color: white;
+      padding: 12px 24px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Scto Grotesk B', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Votre panier</h1>
+    <div id="cart"></div>
+
+    <div class="cta">
+      <button class="btn" onclick="window.location.href='paiement.html'">Passer au paiement</button>
+    </div>
+  </div>
+
+  <script>
+    const cartContainer = document.getElementById("cart");
+    const panier = JSON.parse(localStorage.getItem("panier"));
+
+    if (panier && panier.length > 0) {
+      panier.forEach((item) => {
+        cartContainer.innerHTML += `
+          <div class="product">
+            <div class="product-info">
+              <div class="product-name">${item.name}</div>
+              <div class="product-price">${item.price.toFixed(2)} €</div>
+              <div class="product-tags">${item.tags.join(" • ")}</div>
+            </div>
+            <div>
+              x${item.quantity}
+            </div>
+          </div>
+        `;
+      });
+    } else {
+      cartContainer.innerHTML = "<p>Votre panier est vide.</p>";
+    }
+  </script>
+
+</body>
+</html>

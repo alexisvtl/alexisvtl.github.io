@@ -153,6 +153,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   const add_to_cart = document.getElementById("add-to-cart");
   add_to_cart.addEventListener("click", () => {
     add_to_cart.innerHTML = "Vous avez bien ajouté le produit au panier";
+     // 2. Objet produit à réutiliser
+    const product = {
+      item_id: "PRODUIT-123",
+      item_name: "Duo Éclat Solaire Boost",
+      coupon: null,
+      discount: 0,
+      item_brand: "Respire",
+      item_category: "MATIFIANT",
+      item_category2: "ANTIOXYDANT",
+      item_category3: "HYDRATANT",
+      item_variant: "GTM",
+      item_composition: "75% origine naturelle",
+      item_preocupation: "Teint terne et fatigué, tache pigmentaire & vieillissement cutané",
+      item_description: "Ce duo solaire éclat est parfait pour protéger et illuminer votre peau tout au long de l’été. Composé d’un Stick Solaire et d’un Sérum visage SPF30, il convient à tous les types de peau.",
+      price: 38.80,
+      quantity: 1
+    };
     dataLayer.push({
       event: "add_to_cart",
       ecommerce : {
@@ -171,6 +188,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           item_variant : "GTM",
           item_composition : "75% origine naturelle",
           item_preocupation : "Teint terne et fatigué, tache pigmentaire & vieillissement cutané",
+          item_description : "Ce duo solaire éclat est parfait pour protéger et illuminer votre peau tout au long de l’été. Composé d’un Stick Solaire et d’un Sérum visage SPF30, il convient à tous les types de peau.",
           price : 38.80,
           quantity : 1
   
@@ -181,6 +199,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       
     }
   
-    )
+    );
+      // 4. Ajout dans localStorage (panier)
+    localStorage.setItem("panier", JSON.stringify([product]));
+
+    // 5. Redirection vers panier.html après 1 seconde (optionnel)
+    setTimeout(() => {
+      window.location.href = "panier.html";
+    }, 1000); // délai pour laisser le message visible
+  
   })
   </script>
