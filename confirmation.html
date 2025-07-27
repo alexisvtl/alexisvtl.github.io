@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Confirmation de commande</title>
+  <style>
+    body {
+      font-family: 'Scto Grotesk B', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .info {
+      margin-left: 10px;
+      line-height: 1.6;
+    }
+
+    .product-image {
+      width: 120px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Merci pour votre commande 🙌</h1>
+
+    <div class="section">
+      <h2>🧾 Produit commandé</h2>
+      <div id="product-info" class="info"></div>
+    </div>
+
+    <div class="section">
+      <h2>📍 Informations client</h2>
+      <div id="client-info" class="info"></div>
+    </div>
+  </div>
+
+  <script>
+    const productInfo = document.getElementById("product-info");
+    const clientInfo = document.getElementById("client-info");
+
+    const panier = JSON.parse(localStorage.getItem("panier")) || [];
+    const client = JSON.parse(localStorage.getItem("commande_client")) || null;
+
+    if (panier.length > 0) {
+      const item = panier[0];
+      productInfo.innerHTML = `
+        <img src="https://www.respire.co/cdn/shop/files/SolaireSticksolaire_Serumhydrate.jpg?crop=center&height=2006&v=1744107027&width=1920" alt="${item.item_name}" class="product-image" />
+        <strong>Produit :</strong> ${item.item_name}<br>
+        <strong>Prix :</strong> ${item.price.toFixed(2)} €<br>
+        <strong>Quantité :</strong> ${item.quantity}<br>
+        <strong>Catégories :</strong> ${item.item_category}, ${item.item_category2}, ${item.item_category3}
+      `;
+    } else {
+      productInfo.innerHTML = "Aucun produit trouvé.";
+    }
+
+    if (client) {
+      clientInfo.innerHTML = `
+        <strong>Nom :</strong> ${client.prenom} ${client.nom}<br>
+        <strong>Email :</strong> ${client.email}<br>
+        <strong>Adresse :</strong> ${client.rue}, ${client.codepostal} ${client.ville}, ${client.pays}<br>
+        <strong>Livraison :</strong> ${client.livraison}
+      `;
+    } else {
+      clientInfo.innerHTML = "Aucune information client disponible.";
+    }
+
+    // Nettoyage
+    localStorage.removeItem("panier");
+    localStorage.removeItem("commande_client");
+  </script>
+</body>
+</html>
