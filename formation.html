@@ -155,7 +155,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
     </div>
   </div>
-
+  <script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  event: "view_item",
+  ecommerce: {
+    currency: "EUR",
+    value: 38.80,
+    items: [
+      {
+        item_id: "PRODUIT-123",
+        item_name: "Duo Éclat Solaire Boost",
+        coupon: null,
+        discount: 0,
+        item_brand: "Respire",
+        item_category: "MATIFIANT",
+        item_category2: "ANTIOXYDANT",
+        item_category3: "HYDRATANT",
+        item_variant: "GTM",
+        item_composition: "75% origine naturelle",
+        item_preocupation: "Teint terne et fatigué, tache pigmentaire & vieillissement cutané",
+        item_description: "Ce duo solaire éclat est parfait pour protéger et illuminer votre peau tout au long de l’été. Composé d’un Stick Solaire et d’un Sérum visage SPF30, il convient à tous les types de peau.",
+        price: 38.80,
+        quantity: 1
+      }
+    ]
+  }
+});
+</script>
 </body>
 </html>
 <script>

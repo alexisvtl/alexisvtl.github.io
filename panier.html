@@ -87,44 +87,73 @@
     </div>
   </div>
 
- <script>
-  const cartContainer = document.getElementById("cart");
-  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  <script>
+    const cartContainer = document.getElementById("cart");
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
-  function afficherPanier() {
-    cartContainer.innerHTML = "";
+    // Initialisation de dataLayer
+    window.dataLayer = window.dataLayer || [];
 
-    if (panier.length === 0) {
-      cartContainer.innerHTML = "<p>Votre panier est vide.</p>";
-      return;
+    function afficherPanier() {
+      cartContainer.innerHTML = "";
+
+      if (panier.length === 0) {
+        cartContainer.innerHTML = "<p>Votre panier est vide.</p>";
+        return;
+      }
+
+      panier.forEach((item, index) => {
+        cartContainer.innerHTML += `
+          <div class="product">
+            <img src="https://www.respire.co/cdn/shop/files/SolaireSticksolaire_Serumhydrate.jpg?crop=center&height=2006&v=1744107027&width=1920" alt="${item.item_name}">
+            <div class="product-info">
+              <div class="product-name">${item.item_name}</div>
+              <div class="product-price">${item.price.toFixed(2)} €</div>
+              <div class="product-tags">${item.item_category} • ${item.item_category2} • ${item.item_category3}</div>
+            </div>
+            <div>x${item.quantity}</div>
+            <div style="cursor:pointer; margin-left:15px; font-size:18px; color:#999;" onclick="supprimerProduit(${index})">✖</div>
+          </div>
+        `;
+      });
     }
 
-    panier.forEach((item, index) => {
-      cartContainer.innerHTML += `
-        <div class="product">
-          <img src="https://www.respire.co/cdn/shop/files/SolaireSticksolaire_Serumhydrate.jpg?crop=center&height=2006&v=1744107027&width=1920" alt="${item.item_name}">
-          <div class="product-info">
-            <div class="product-name">${item.item_name}</div>
-            <div class="product-price">${item.price.toFixed(2)} €</div>
-            <div class="product-tags">${item.item_category} • ${item.item_category2} • ${item.item_category3}</div>
-          </div>
-          <div>x${item.quantity}</div>
-          <div style="cursor:pointer; margin-left:15px; font-size:18px; color:#999;" onclick="supprimerProduit(${index})">✖</div>
-        </div>
-      `;
-    });
-  }
+    function supprimerProduit(index) {
+      const produit = panier[index];
 
-  function supprimerProduit(index) {
-    panier.splice(index, 1); // Retirer le produit
-    localStorage.setItem("panier", JSON.stringify(panier));
-    afficherPanier(); // Rafraîchir l'affichage
-  }
+      // Push remove_from_cart avant suppression
+      dataLayer.push({
+        event: "remove_from_cart",
+        ecommerce: {
+          currency: "EUR",
+          value: produit.price * produit.quantity,
+          items: [produit]
+        }
+      });
 
-  // Initialisation à l'ouverture
-  afficherPanier();
-</script>
+      panier.splice(index, 1); // Retirer le produit
+      localStorage.setItem("panier", JSON.stringify(panier));
+      afficherPanier();
+    }
 
+    // Push view_cart une seule fois au chargement de la page
+    function pushViewCart() {
+      const total = panier.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      dataLayer.push({
+        event: "view_cart",
+        ecommerce: {
+          currency: "EUR",
+          value: total,
+          items: panier.length > 0 ? panier : []
+        }
+      });
+    }
+
+    // Initialisation
+    afficherPanier();
+    pushViewCart();
+  </script>
 
 </body>
 </html>
