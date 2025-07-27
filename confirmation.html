@@ -71,8 +71,14 @@
     const panier = JSON.parse(localStorage.getItem("panier")) || [];
     const client = JSON.parse(localStorage.getItem("commande_client")) || null;
 
+    // Initialiser dataLayer
+    window.dataLayer = window.dataLayer || [];
+
     if (panier.length > 0) {
       const item = panier[0];
+      const total = panier.reduce((sum, p) => sum + p.price * p.quantity, 0);
+
+      // Affichage produit
       productInfo.innerHTML = `
         <img src="https://www.respire.co/cdn/shop/files/SolaireSticksolaire_Serumhydrate.jpg?crop=center&height=2006&v=1744107027&width=1920" alt="${item.item_name}" class="product-image" />
         <strong>Produit :</strong> ${item.item_name}<br>
@@ -80,6 +86,27 @@
         <strong>Quantité :</strong> ${item.quantity}<br>
         <strong>Catégories :</strong> ${item.item_category}, ${item.item_category2}, ${item.item_category3}
       `;
+
+      // Génération d’un ID de transaction
+      const transactionId = 'CMD-' + Date.now();
+
+      // Push dans dataLayer
+      dataLayer.push({
+        event: "purchase",
+        ecommerce: {
+          transaction_id: transactionId,
+          value: total,
+          currency: "EUR",
+          items: panier
+        },
+        client: {
+          prenom: client?.prenom || "",
+          nom: client?.nom || "",
+          email: client?.email || "",
+          adresse: `${client?.rue || ""}, ${client?.codepostal || ""} ${client?.ville || ""}, ${client?.pays || ""}`,
+          livraison: client?.livraison || ""
+        }
+      });
     } else {
       productInfo.innerHTML = "Aucun produit trouvé.";
     }
