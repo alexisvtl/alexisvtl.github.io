@@ -12,7 +12,7 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       background: #fff;
       border-radius: 10px;
@@ -22,14 +22,22 @@
 
     h1 {
       font-size: 24px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .product {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
       margin-bottom: 20px;
+    }
+
+    .product img {
+      width: 120px;
+      height: auto;
+      border-radius: 8px;
     }
 
     .product-info {
@@ -37,17 +45,23 @@
     }
 
     .product-name {
-      font-weight: bold;
       font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
     }
 
     .product-price {
       color: #444;
+      margin-bottom: 5px;
+    }
+
+    .product-tags {
+      font-size: 12px;
+      color: #777;
     }
 
     .cta {
-      display: flex;
-      justify-content: flex-end;
+      text-align: right;
     }
 
     .btn {
@@ -81,14 +95,13 @@
       panier.forEach((item) => {
         cartContainer.innerHTML += `
           <div class="product">
+            <img src="chemin-vers-ton-image.jpg" alt="${item.item_name}">
             <div class="product-info">
-              <div class="product-name">${item.name}</div>
+              <div class="product-name">${item.item_name}</div>
               <div class="product-price">${item.price.toFixed(2)} €</div>
-              <div class="product-tags">${item.tags.join(" • ")}</div>
+              <div class="product-tags">${item.item_category} • ${item.item_category2} • ${item.item_category3}</div>
             </div>
-            <div>
-              x${item.quantity}
-            </div>
+            <div>x${item.quantity}</div>
           </div>
         `;
       });
