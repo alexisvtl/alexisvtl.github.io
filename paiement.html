@@ -12,7 +12,7 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       background: #fff;
       border-radius: 10px;
@@ -26,9 +26,17 @@
     }
 
     .product-summary {
+      display: flex;
+      gap: 20px;
+      align-items: center;
       background-color: #f4f4f4;
       padding: 15px;
       margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    .product-summary img {
+      width: 120px;
       border-radius: 8px;
     }
 
@@ -42,7 +50,7 @@
       font-weight: bold;
     }
 
-    input {
+    input, select {
       width: 100%;
       padding: 10px;
       font-size: 14px;
@@ -71,16 +79,39 @@
 
     <form id="payment-form">
       <div class="form-group">
-        <label for="name">Nom complet</label>
-        <input type="text" id="name" required />
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" required />
+      </div>
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" required />
       </div>
       <div class="form-group">
         <label for="email">Adresse e-mail</label>
         <input type="email" id="email" required />
       </div>
       <div class="form-group">
-        <label for="address">Adresse de livraison</label>
-        <input type="text" id="address" required />
+        <label for="rue">Rue et numéro</label>
+        <input type="text" id="rue" required />
+      </div>
+      <div class="form-group">
+        <label for="codepostal">Code postal</label>
+        <input type="text" id="codepostal" required />
+      </div>
+      <div class="form-group">
+        <label for="ville">Ville</label>
+        <input type="text" id="ville" required />
+      </div>
+      <div class="form-group">
+        <label for="pays">Pays</label>
+        <input type="text" id="pays" required />
+      </div>
+      <div class="form-group">
+        <label for="livraison">Type de livraison</label>
+        <select id="livraison" required>
+          <option value="en magasin">En magasin</option>
+          <option value="à domicile">À domicile</option>
+        </select>
       </div>
 
       <button type="submit" class="btn">Confirmer la commande</button>
@@ -92,11 +123,14 @@
     const panier = JSON.parse(localStorage.getItem("panier")) || [];
 
     if (panier.length > 0) {
-      const item = panier[0]; // Un seul produit dans ton cas
+      const item = panier[0]; // Un seul produit pour ton cas
       recapContainer.innerHTML = `
-        <strong>Produit :</strong> ${item.item_name}<br>
-        <strong>Prix :</strong> ${item.price.toFixed(2)} €<br>
-        <strong>Quantité :</strong> ${item.quantity}
+        <img src="chemin-vers-ton-image.jpg" alt="${item.item_name}">
+        <div>
+          <strong>Produit :</strong> ${item.item_name}<br>
+          <strong>Prix :</strong> ${item.price.toFixed(2)} €<br>
+          <strong>Quantité :</strong> ${item.quantity}
+        </div>
       `;
     } else {
       recapContainer.innerHTML = "<p>Aucun produit dans le panier.</p>";
@@ -106,18 +140,21 @@
     form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const address = document.getElementById("address").value;
+      const infosClient = {
+        prenom: document.getElementById("prenom").value,
+        nom: document.getElementById("nom").value,
+        email: document.getElementById("email").value,
+        rue: document.getElementById("rue").value,
+        codepostal: document.getElementById("codepostal").value,
+        ville: document.getElementById("ville").value,
+        pays: document.getElementById("pays").value,
+        livraison: document.getElementById("livraison").value
+      };
 
-      // Stocker les infos client dans localStorage temporairement
-      localStorage.setItem("commande_client", JSON.stringify({
-        name,
-        email,
-        address
-      }));
+      // Stocker les infos client
+      localStorage.setItem("commande_client", JSON.stringify(infosClient));
 
-      // Redirection vers la page de confirmation
+      // Redirection
       window.location.href = "confirmation.html";
     });
   </script>
