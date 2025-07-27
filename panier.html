@@ -87,28 +87,44 @@
     </div>
   </div>
 
-  <script>
-    const cartContainer = document.getElementById("cart");
-    const panier = JSON.parse(localStorage.getItem("panier"));
+ <script>
+  const cartContainer = document.getElementById("cart");
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
-    if (panier && panier.length > 0) {
-      panier.forEach((item) => {
-        cartContainer.innerHTML += `
-          <div class="product">
-            <img src="https://www.respire.co/cdn/shop/files/SolaireSticksolaire_Serumhydrate.jpg?crop=center&height=2006&v=1744107027&width=1920" alt="${item.item_name}">
-            <div class="product-info">
-              <div class="product-name">${item.item_name}</div>
-              <div class="product-price">${item.price.toFixed(2)} €</div>
-              <div class="product-tags">${item.item_category} • ${item.item_category2} • ${item.item_category3}</div>
-            </div>
-            <div>x${item.quantity}</div>
-          </div>
-        `;
-      });
-    } else {
+  function afficherPanier() {
+    cartContainer.innerHTML = "";
+
+    if (panier.length === 0) {
       cartContainer.innerHTML = "<p>Votre panier est vide.</p>";
+      return;
     }
-  </script>
+
+    panier.forEach((item, index) => {
+      cartContainer.innerHTML += `
+        <div class="product">
+          <img src="https://www.respire.co/cdn/shop/files/SolaireSticksolaire_Serumhydrate.jpg?crop=center&height=2006&v=1744107027&width=1920" alt="${item.item_name}">
+          <div class="product-info">
+            <div class="product-name">${item.item_name}</div>
+            <div class="product-price">${item.price.toFixed(2)} €</div>
+            <div class="product-tags">${item.item_category} • ${item.item_category2} • ${item.item_category3}</div>
+          </div>
+          <div>x${item.quantity}</div>
+          <div style="cursor:pointer; margin-left:15px; font-size:18px; color:#999;" onclick="supprimerProduit(${index})">✖</div>
+        </div>
+      `;
+    });
+  }
+
+  function supprimerProduit(index) {
+    panier.splice(index, 1); // Retirer le produit
+    localStorage.setItem("panier", JSON.stringify(panier));
+    afficherPanier(); // Rafraîchir l'affichage
+  }
+
+  // Initialisation à l'ouverture
+  afficherPanier();
+</script>
+
 
 </body>
 </html>
